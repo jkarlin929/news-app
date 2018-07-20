@@ -4,7 +4,10 @@ class Search extends React.Component {
   render() {
     return(
       <div>
-        <input type="text" placeholder="Enter Keyword..."/>
+        <form>
+          <input type="text" name="text" placeholder="Enter Keyword..."/>
+          <button>Get News</button>
+        </form>
       </div>
     );
   }

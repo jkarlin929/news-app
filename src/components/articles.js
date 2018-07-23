@@ -22,11 +22,10 @@ class Articles extends React.Component {
   render() {
     return(
       <div>
-        <ul>
-          {this.state.posts.map((post, i) =>
-            <li key={i}>{post.title}</li>
-            )}
-        </ul>
+          {this.state.posts.map(post =>
+            <p key={post.id}>
+            <a href={post.url}>{post.title}</a>
+            </p>)}
       </div>
     );
   }

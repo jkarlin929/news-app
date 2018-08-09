@@ -5,8 +5,9 @@ import axios from 'axios';
 
 class App extends Component {
   state = {
-    articles: []
+    articles: ''
   }
+
   getNews = (e) => {
     e.preventDefault();
   const keyWord = e.target.elements.keyword.value;
@@ -24,6 +25,7 @@ class App extends Component {
       <div>
         <Title />
         <Search getNews={this.getNews}  />
+        { this.state.articles ? <p>Here are your results: {this.state.articles}</p> : <p>Please enter a keyword.</p> }
       </div>
     );
   }

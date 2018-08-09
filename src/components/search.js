@@ -1,16 +1,14 @@
 import React from 'react';
 
-class Search extends React.Component {
-  render() {
-    return(
-      <div>
-        <form>
-          <input type="text" name="text" placeholder="Enter Keyword..."/>
-          <button>Get News</button>
-        </form>
-      </div>
-    );
-  }
+const Search = (props) => {
+  return(
+    <div>
+      <form onSubmit={props.getNews}>
+        <input type="text" name="keyword" placeholder="Enter Keyword..."/>
+        <button>Get News</button>
+      </form>
+    </div>
+  );
 }
 
 export default Search;

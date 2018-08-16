@@ -5,7 +5,7 @@ import axios from 'axios';
 
 class App extends Component {
   state = {
-    articles: ''
+    articles: []
   }
 
   getNews = (e) => {
@@ -16,16 +16,21 @@ class App extends Component {
     const articles = res.data.articles;
     this.setState({ articles })
     console.log('this is articles', articles);
-
   })
-  }
+}
 
   render() {
     return (
       <div>
         <Title />
         <Search getNews={this.getNews}  />
-        { this.state.articles ? <p>Here are your results: {this.state.articles}</p> : <p>Please enter a keyword.</p> }
+        {this.state.articles.map((article, index) =>
+          <ul key={index}>
+            <li>
+              {article.url}, {article.title}
+            </li>
+          </ul>
+        )}
       </div>
     );
   }

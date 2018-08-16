@@ -5,7 +5,8 @@ import axios from 'axios';
 
 class App extends Component {
   state = {
-    articles: []
+    articles: [],
+    error: ""
   }
 
   getNews = (e) => {
@@ -14,8 +15,18 @@ class App extends Component {
   axios.get(`https://newsapi.org/v2/everything?q=${keyWord}&apiKey=5c36ad90511f463fa29cd47d247f4150`)
   .then(res => {
     const articles = res.data.articles;
-    this.setState({ articles })
-    console.log('this is articles', articles);
+    if (articles) {
+      console.log('this is articles', articles);
+      this.setState({
+        articles,
+        error: ""
+      });
+    } else {
+      this.setState({
+        articles: undefined,
+        error: "Please enter a keyword"
+      })
+    }
   })
 }
 
@@ -27,7 +38,15 @@ class App extends Component {
         {this.state.articles.map((article, index) =>
           <ul key={index}>
             <li>
-              {article.url}, {article.title}
+              {article.title},
+            </li>
+
+            <li>
+              {article.description},
+            </li>
+
+            <li>
+               <a href={article.url}>Link to Article</a>
             </li>
           </ul>
         )}

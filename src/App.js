@@ -38,11 +38,11 @@ class App extends Component {
         {this.state.articles.map((article, index) =>
           <ul key={index}>
             <li>
-              {article.title},
+              {article.title}
             </li>
 
             <li>
-              {article.description},
+              {article.description}
             </li>
 
             <li>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Title from './components/title';
 import Search from './components/search';
 import axios from 'axios';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -15,8 +16,8 @@ class App extends Component {
   axios.get(`https://newsapi.org/v2/everything?q=${keyWord}&apiKey=5c36ad90511f463fa29cd47d247f4150`)
   .then(res => {
     const articles = res.data.articles;
+    console.log(articles)
     if (articles) {
-      console.log('this is articles', articles);
       this.setState({
         articles,
         error: ""
@@ -36,19 +37,29 @@ class App extends Component {
         <Title />
         <Search getNews={this.getNews}  />
         {this.state.articles.map((article, index) =>
-          <ul key={index}>
+        <div className="articles" key={index}>
+          <ul>
             <li>
-              {article.title}
+              Title: {article.title}
             </li>
 
             <li>
-              {article.description}
+              Description: {article.description}
             </li>
 
             <li>
                <a href={article.url}>Link to Article</a>
             </li>
+
+            <li>
+              Source: {article.source.name}
+            </li>
+
+            <li>
+              Date and Time Published: {article.publishedAt}
+            </li>
           </ul>
+        </div>
         )}
       </div>
     );
